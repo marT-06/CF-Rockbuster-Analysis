@@ -1,0 +1,99 @@
+# FILMS
+
+## RELEASE YEAR & FILM COUNTING
+
+SELECT
+	COUNT (film_id) AS film_count,
+	release_year
+FROM film
+GROUP BY 2;
+
+## COUNTING LANGUAGE
+
+SELECT name
+FROM language
+GROUP BY 1;
+
+## COUNTING ACTORS
+
+SELECT 
+	COUNT (actor_id) AS actor_count
+FROM actor;
+
+## COUNTING CATEGORY
+
+SELECT 
+	COUNT (DISTINCT name) AS category_count
+FROM category;			
+				
+## RENTING TIME FOR MAJORITY OF FILMS
+
+SELECT rental_duration AS ""rented for (in days)"", 
+	COUNT(*) AS number_of_films
+FROM film
+GROUP BY 1
+ORDER BY 2 DESC;				
+				
+				
+# CUSTOMERS
+
+## COUNTING CUSTOMERS
+
+SELECT 
+	COUNT(customer_id) AS number_of_customers
+FROM customer;
+
+## COUNTING STAFF AND STORES 
+
+SELECT  COUNT(A.staff_id) AS number_of_staff,
+		D.country,
+		C.city,
+	count(A.store_id) AS number_of_stores
+	FROM staff A
+INNER JOIN address B ON B.address_id = A.address_id
+INNER JOIN city C ON C.city_id = B.city_id
+INNER JOIN country D ON D.country_id = C.country_id
+	GROUP BY 2,3;
+  
+## COUNTING CITIES  AND COUNTRIES WHERE HAVING CUSTOMERS
+
+SELECT 
+	COUNT(DISTINCT C.city_id) AS number_of_cities,
+	COUNT(DISTINCT C.country_id) AS number_of_countries
+	FROM customer A
+INNER JOIN address B ON B.address_id = A.address_id
+INNER JOIN city C ON C.city_id = B.city_id
+INNER JOIN country D ON D.country_id = C.country_id;
+
+
+# RENTALS
+
+## MIN, MAX & AVG
+
+SELECT 
+	   MIN(rental_duration) AS min_rental_duration,
+       MAX(rental_duration) AS max_rental_duration,
+       AVG(rental_duration) AS avg_rental_duration,
+	   MIN(rental_rate) AS min_rent,
+       MAX(rental_rate) AS max_rent,
+       AVG(rental_rate) AS avg_rent,
+	   MIN(length) AS min_length,
+       MAX(length) AS max_length,
+       AVG(length) AS avg_length,
+	   MIN(replacement_cost) AS min_replacement_cost,
+       MAX(replacement_cost) AS max_replacement_cost,
+       AVG(replacement_cost) AS avg_replacem;
+       
+ ## MODE FROM FILM
+ 
+ SELECT mode() WITHIN GROUP (ORDER BY title)
+       AS modal_title,
+	   mode() WITHIN GROUP (ORDER BY rating)
+       AS modal_rating
+FROM film;
+
+## MODE FROM CATEGORY
+
+SELECT mode() WITHIN GROUP (ORDER BY name)
+       AS modal_category
+FROM category;	
