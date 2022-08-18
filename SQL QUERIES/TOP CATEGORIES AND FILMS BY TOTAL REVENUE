@@ -1,0 +1,26 @@
+Here is a SQL Query for top categories and movies by revenue:
+
+
+WITH profitable_films_cte AS
+(SELECT A.title,
+		SUM(D.amount) AS total_amount
+FROM film A
+INNER JOIN inventory B ON A.film_id = B.film_id
+INNER JOIN rental C ON B.inventory_id = C.inventory_id
+INNER JOIN payment D  ON C.rental_id = D.rental_id
+
+GROUP BY 1
+ORDER BY total_amount DESC
+LIMIT 10),
+film_category_name_cte AS
+(SELECT A.title,
+ 		C.name
+ FROM film A
+ INNER JOIN film_category B ON A.film_id = B.film_id
+ INNER JOIN category C ON B.category_id = C.category_id
+ GROUP BY 1,2)
+ SELECT  profitable_films_cte.title,
+ 		film_category_name_cte.name AS category,
+		total_amount
+FROM profitable_films_cte, film_category_name_cte;					
+						
