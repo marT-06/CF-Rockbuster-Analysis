@@ -1,4 +1,4 @@
-Here is a SQL Query for top categories and movies by revenue:
+Here is a SQL query for top categories and movies by revenue:
 
 
 WITH profitable_films_cte AS
@@ -22,5 +22,4 @@ film_category_name_cte AS
  SELECT  profitable_films_cte.title,
  		film_category_name_cte.name AS category,
 		total_amount
-FROM profitable_films_cte, film_category_name_cte;					
-						
+FROM profitable_films_cte, film_category_name_cte;
