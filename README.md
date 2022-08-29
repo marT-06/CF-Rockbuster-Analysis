@@ -9,11 +9,11 @@ Rockbuster Stealth LLC used to be a movie rental company with locations all over
 
 # The steps of the Analysis
 - Moderately complex SQL queries were created to answer business questions
-  -- Writing SQL queries to organize and sort data, 
-  -- Filtering and ordering data using the WHERE and HAVING clauses, 
-  -- Summarizing & Cleaning Data,
-  -- Joining tables, 
-  -- Performing Subqueries and Common Table Expressions.
+  - Writing SQL queries to organize and sort data, 
+  - Filtering and ordering data using the WHERE and HAVING clauses, 
+  - Summarizing & Cleaning Data,
+  - Joining tables, 
+  - Performing Subqueries and Common Table Expressions.
 - SQL results presented by creating visualizations and telling a compelling story.
 - SQL results presented by using Excel and creating a data dictionary.
 
